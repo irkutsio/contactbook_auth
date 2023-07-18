@@ -11,19 +11,27 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import { authReducer } from './auth/authSlice';
 
-const persistConfig = {
-  key: 'contacts',
+// const persistConfig = {
+//   key: 'contacts',
+//   storage,
+//   blacklist: ['filter'],
+// };
+
+const authPersistConfig = {
+  key: 'auth',
   storage,
-  blacklist: ['filter'],
-};
+  whitelist:['token'],
+}
 
 const rootReducer = combineReducers({
   contacts: contactsReducer,
   filter: filterReducer,
+  auth: authReducer,
 });
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(authPersistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
