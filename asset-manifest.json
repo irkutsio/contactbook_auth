@@ -1,13 +1,14 @@
 {
   "files": {
     "main.css": "/contactbook_auth/static/css/main.8f7e3d82.css",
-    "main.js": "/contactbook_auth/static/js/main.e2365042.js",
+    "main.js": "/contactbook_auth/static/js/main.69772531.js",
+    "static/media/4143866.jpg": "/contactbook_auth/static/media/4143866.ef8b15e6ae785153e41c.jpg",
     "index.html": "/contactbook_auth/index.html",
     "main.8f7e3d82.css.map": "/contactbook_auth/static/css/main.8f7e3d82.css.map",
-    "main.e2365042.js.map": "/contactbook_auth/static/js/main.e2365042.js.map"
+    "main.69772531.js.map": "/contactbook_auth/static/js/main.69772531.js.map"
   },
   "entrypoints": [
     "static/css/main.8f7e3d82.css",
-    "static/js/main.e2365042.js"
+    "static/js/main.69772531.js"
   ]
 }
