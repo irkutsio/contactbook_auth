@@ -1,36 +1,54 @@
-import { Route, Routes} from 'react-router-dom';
-// import { ContactForm } from './ContactForm/ContactForm';
-// import { ContactList } from './ContactList/ContactList';
-// import { FilterInput } from './FilterInput/FilterInput';
+import { Route, Routes } from 'react-router-dom';
 import { Registration } from '../pages/Registration/Registration';
 import { Login } from 'pages/Login/Login';
 import { Home } from 'pages/Home/Home';
 import { ContactPage } from 'pages/Contacts/ContactPage';
 import { SharedLayout } from './Layout';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { authOperations } from 'redux/auth/auth-operations';
-// import { contactsReducer } from 'redux/contactsSlice';
+import authSelectors from 'redux/auth/auth-selectors';
+import { ResrtictedRoute } from './RestrictedRoute';
+import { PrivateRoute } from './PrivateRoute';
 
 export const App = () => {
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(authSelectors.getIsRefreshing);
 
-const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(authOperations.refreshCurrentUser());
+ 
+  }, [dispatch]);
 
-useEffect(()=>{
-  dispatch(authOperations.fetchCurrentUser())
-},[dispatch])
-
-  return (
+  return isRefreshing ? (
+    <p>refreshing....</p>
+  ) : (
     <div style={{ padding: '36px' }}>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/registration" element={<Registration />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/contacts" element={<ContactPage />} />
-          {/* <PrivateRoute path="/contacts">
-            <ContactPage />
-          </PrivateRoute> */}
+          <Route
+            path="/registration"
+            element={
+              <ResrtictedRoute
+                component={Registration}
+                redirectTo="/contacts"
+              />
+            }
+          />
+
+          <Route
+            path="/login"
+            element={
+              <ResrtictedRoute component={Login} redirectTo="/contacts" />
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute component={ContactPage} redirectTo="/login" />
+            }
+          />
         </Route>
       </Routes>
     </div>

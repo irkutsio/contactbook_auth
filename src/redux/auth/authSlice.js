@@ -8,10 +8,10 @@ const initialState = {
   },
   token: null,
   isLoggedIn: false,
-  //   isRefreshing: false,
+  isRefreshing: false,
 };
 
-const { register, logIn, logOut, fetchCurrentUser } = authOperations;
+const { register, logIn, logOut, refreshCurrentUser } = authOperations;
 
 const authSlice = createSlice({
   name: 'auth',
@@ -33,10 +33,17 @@ const authSlice = createSlice({
         state.token = null;
         state.isLoggedIn = false;
       })
-      .addCase(fetchCurrentUser.fulfilled, (state, { payload }) => {
+      .addCase(refreshCurrentUser.pending, state => {
+        state.isRefreshing = true;
+      })
+      .addCase(refreshCurrentUser.fulfilled, (state, { payload }) => {
         state.user = payload;
         state.isLoggedIn = true;
-      });
+        state.isRefreshing = false;
+    
+      }).addCase(refreshCurrentUser.rejected, state => {
+        state.isRefreshing = false;
+      })
   },
 });
 

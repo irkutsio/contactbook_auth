@@ -1,4 +1,4 @@
-
+import toast, { Toaster } from 'react-hot-toast';
 import { nanoid } from '@reduxjs/toolkit';
 import { Fields } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,7 +17,7 @@ export const ContactForm = () => {
     const oldContact = contacts.find(contact => contact.name === name.value);
 
     if (oldContact) {
-      alert('Sorry, you have contact with such name');
+      toast.error('Sorry, you have contact with such name');
       e.target.reset();
       return;
     }
@@ -36,22 +36,10 @@ export const ContactForm = () => {
 
   // const dispatch = useDispatch();
 
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   const { name, number } = e.target;
-  //   const form = {
-  //     name: name.value,
-  //     number: number.value,
-  //     id:nanoid(),
-  //   };
 
-  //   e.target.reset();
-
-  //   dispatch(createContact(form));
-  // };
-
-  return (
-    <form onSubmit={handleSubmit}>
+  return (<>
+  <Toaster/>
+  <form onSubmit={handleSubmit}>
       <Fields>
         <label>Name</label>
         <input
@@ -76,6 +64,8 @@ export const ContactForm = () => {
         <button type="submit">Add Contact</button>
       </Fields>
     </form>
+  </>
+  
   );
 };
 
