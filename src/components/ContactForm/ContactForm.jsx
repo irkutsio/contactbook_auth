@@ -1,13 +1,13 @@
 import toast, { Toaster } from 'react-hot-toast';
 import { nanoid } from '@reduxjs/toolkit';
-import { Fields } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { selectContacts } from 'redux/contacts/selectors';
 import { addContact } from 'redux/contacts/operations';
+import { Button, TextField } from '@mui/material';
+import { Form } from './ContactForm.style';
+
 
 export const ContactForm = () => {
-
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
 
@@ -31,41 +31,40 @@ export const ContactForm = () => {
     dispatch(addContact(contact));
   };
 
+  return (
+    <>
+      <Toaster />
 
+      <Form onSubmit={handleSubmit} >
+      <h1>Phonebook</h1>
+        <div>
+          <TextField
+            id="outlined-basic"
+            label="Name"
+            variant="outlined"
+            type="text"
+            name="name"
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            required
+          />
+          <TextField
+            id="outlined-basic"
+            label="Number"
+            variant="outlined"
+            type="tel"
+            name="number"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+            style={{ marginBottom: 24 }}
+          />
+        </div>
+        <Button variant="contained" type="submit">
+          Add Contact
+        </Button>
+      </Form>
 
-
-  // const dispatch = useDispatch();
-
-
-  return (<>
-  <Toaster/>
-  <form onSubmit={handleSubmit}>
-      <Fields>
-        <label>Name</label>
-        <input
-          type="text"
-          name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-          // value={name}
-          // onChange={handleChange}
-        />
-        <input
-          type="tel"
-          name="number"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-          // value={number}
-          // onChange={handleChange}
-        />
-
-        <button type="submit">Add Contact</button>
-      </Fields>
-    </form>
-  </>
-  
+    </>
   );
 };
-

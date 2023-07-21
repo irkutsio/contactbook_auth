@@ -1,8 +1,8 @@
-import { Filter } from './FilterInput.styled';
+import { TextField } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from 'redux/contacts/filterSlice';
 import { selectFilter } from 'redux/contacts/selectors';
-
+import { FilterContainer } from './FilterInput.styled';
 
 export const FilterInput = () => {
   const filter = useSelector(selectFilter);
@@ -14,13 +14,16 @@ export const FilterInput = () => {
   };
 
   return (
-    <>
-      {' '}
+    <FilterContainer>
       <h2>Contacts</h2>
-      <Filter>
-        <label>Find Contact by name</label>
-        <input type="text" value={filter} onChange={handleChange} />
-      </Filter>
-    </>
+      <TextField
+        id="outlined-basic"
+        label="Find Contact by name"
+        variant="outlined"
+        type="text"
+        value={filter}
+        onChange={handleChange}
+      />
+    </FilterContainer>
   );
 };

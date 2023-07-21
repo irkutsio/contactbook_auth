@@ -10,6 +10,9 @@ import { authOperations } from 'redux/auth/auth-operations';
 import authSelectors from 'redux/auth/auth-selectors';
 import { ResrtictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
+import { Loader } from './Loader/Loader';
+
+
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -21,7 +24,7 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <p>refreshing....</p>
+    <Loader/>
   ) : (
     <div style={{ padding: '36px' }}>
       <Routes>
@@ -52,5 +55,6 @@ export const App = () => {
         </Route>
       </Routes>
     </div>
+
   );
 };

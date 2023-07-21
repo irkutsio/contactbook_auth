@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 
-export const Filter = styled.div`
+export const FilterContainer = styled.div`
+  display: flex;
+  gap: 60px;
+  justify-content: flex-start;
 
-input {
-    height: 22px;
-    margin-left: 24px;
-}`
+  h2 {
+    color: #1976d2;
+  }
+`;

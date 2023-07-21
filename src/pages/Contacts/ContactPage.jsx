@@ -4,9 +4,6 @@ import { FilterInput } from 'components/FilterInput/FilterInput';
 import { Loader } from 'components/Loader/Loader';
 import { useSelector } from 'react-redux';
 import { selectIsloading } from 'redux/contacts/selectors';
-// import toast, { Toaster } from 'react-hot-toast';
-// import { useEffect } from 'react';import { useSelector } from 'react-redux';
-// import authSelectors from 'redux/auth/auth-selectors';
 
 export const ContactPage = () => {
   const isLoading = useSelector(selectIsloading);
@@ -14,10 +11,11 @@ export const ContactPage = () => {
   return (
     <>
       {isLoading && <Loader />}
-      <h1>Phonebook</h1>
+
       <ContactForm />
-      <FilterInput />
-      <ContactList />
+        <FilterInput />
+        <ContactList />
+
     </>
   );
 };

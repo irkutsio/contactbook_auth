@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth/auth-operations';
 import toast, { Toaster } from 'react-hot-toast';
-
+import { Button, TextField } from '@mui/material';
+import { Form } from 'pages/Login/Login.styled';
 
 export const Registration = () => {
-
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -28,10 +28,10 @@ const dispatch = useDispatch();
   const handleSubmit = e => {
     e.preventDefault();
 
-if(password.length < 7) {
-  toast.error('password should be longer then 6 simbols')
-  return;
-}
+    if (password.length < 7) {
+      toast.error('password should be longer then 6 simbols');
+      return;
+    }
 
     dispatch(authOperations.register({ name, email, password }));
     setName('');
@@ -41,56 +41,55 @@ if(password.length < 7) {
 
   return (
     <>
-    <Toaster/>
-      <form onSubmit={handleSubmit}>
-        <div
-          style={{
-            width: 400,
-            backgroundColor: 'beige',
-            padding: 16,
-            borderRadius: 8,
-            border: '2px solid red',
-          }}
-        >
-          <h1>Registration</h1>
+      <Toaster />
+      <Form>
+        <form onSubmit={handleSubmit}>
           <div>
-            {' '}
-            <label>Name</label>
-            <input
-              onChange={handleChange}
-              type="text"
-              name="name"
-              value={name}
-              style={{ marginBottom: 24, marginLeft: 16 }}
-            />
-          </div>
+            <h1>Registration</h1>
+            <div>
+              <TextField
+                id="outlined-basic"
+                label="Name"
+                variant="outlined"
+                onChange={handleChange}
+                type="text"
+                name="name"
+                value={name}
+                style={{ marginBottom: 24, width: 300 }}
+              />
+            </div>
 
-          <div>
-            {' '}
-            <label>Email address</label>
-            <input
-              type="email"
-              onChange={handleChange}
-              name="email"
-              value={email}
-              style={{ marginBottom: 24, marginLeft: 16 }}
-            />
-          </div>
+            <div>
+              <TextField
+                id="outlined-basic"
+                label="Email address"
+                variant="outlined"
+                type="email"
+                onChange={handleChange}
+                name="email"
+                value={email}
+                style={{ marginBottom: 24 , width: 300}}
+              />
+            </div>
 
-          <div>
-            {' '}
-            <label>Passwords</label>
-            <input
-              onChange={handleChange}
-              type="password"
-              name="password"
-              value={password}
-              style={{ marginBottom: 24, marginLeft: 16 }}
-            />
+            <div>
+              <TextField
+                id="outlined-basic"
+                label="Passwords"
+                variant="outlined"
+                onChange={handleChange}
+                type="password"
+                name="password"
+                value={password}
+                style={{ marginBottom: 24, width: 300 }}
+              />
+            </div>
+            <Button variant="contained" type="submit">
+              Registration
+            </Button>
           </div>
-          <button type="submit">Registration</button>
-        </div>
-      </form>
+        </form>
+      </Form>
     </>
   );
 };

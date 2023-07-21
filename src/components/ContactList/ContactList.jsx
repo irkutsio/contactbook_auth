@@ -1,14 +1,17 @@
 import { Contact } from 'components/Contact/Contact';
-// import { Loader } from 'components/Loader/Loader';
+import { Loader } from 'components/Loader/Loader';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { fetchContacts } from 'redux/contacts/operations';
-import { selectError, selectIsloading, selectVisibleContacts } from 'redux/contacts/selectors';
-
-
+import {
+  selectError,
+  selectIsloading,
+  selectVisibleContacts,
+} from 'redux/contacts/selectors';
 
 export const ContactList = () => {
-  // const isLoading = useSelector(selectIsloading);
+  const isLoading = useSelector(selectIsloading);
   const error = useSelector(selectError);
   const contacts = useSelector(selectVisibleContacts);
 
@@ -19,15 +22,16 @@ export const ContactList = () => {
   }, [dispatch]);
 
   return (
-    <>
-      {/* {isLoading && <Loader/>} */}
-      {error && <b>Please authenticate</b>}
-      <ul>
-        {contacts.map(({ id, name, number }) => {
-          return <Contact name={name} number={number} id={id} key={id} />;
-        })}
-      </ul>
-    </>
+
+      <>
+        {isLoading && <Loader />}
+        {error && <b>Please authenticate</b>}
+        <ul>
+          {contacts.map(({ id, name, number }) => {
+            return <Contact name={name} number={number} id={id} key={id} />;
+          })}
+        </ul>
+      </>
 
   );
 };

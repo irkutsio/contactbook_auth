@@ -1,6 +1,8 @@
-import {  useState } from 'react';
-import { useDispatch} from 'react-redux';
+import { Button, TextField } from '@mui/material';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth/auth-operations';
+import { Form } from './Login.styled';
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -24,48 +26,42 @@ export const Login = () => {
     dispatch(authOperations.logIn({ email, password }));
     setEmail('');
     setPassword('');
-
   };
 
-
   return (
-    <>
-
+    <Form>
       <form onSubmit={handleSubmit}>
-        <div
-          style={{
-            width: 400,
-            backgroundColor: 'beige',
-            padding: 16,
-            borderRadius: 8,
-            border: '2px solid red',
-          }}
-        >
-          <h1>Login</h1>
+        <h1>Login</h1>
 
-          <div>
-            <label>Email address</label>
-            <input
-              onChange={handleChange}
-              value={email}
-              name="email"
-              style={{ marginBottom: 24, marginLeft: 16 }}
-            />
-          </div>
-
-          <div>
-            <label>Passwords</label>
-            <input
-              value={password}
-              onChange={handleChange}
-              type="password"
-              name="password"
-              style={{ marginBottom: 24, marginLeft: 16 }}
-            />
-          </div>
-          <button type="submit">Login</button>
+        <div>
+          <TextField
+            id="outlined-basic"
+            label="Email address"
+            variant="outlined"
+            onChange={handleChange}
+            value={email}
+            name="email"
+            type="email"
+            style={{ marginBottom: 24, width: 300 }}
+          />
         </div>
+
+        <div>
+          <TextField
+            id="outlined-basic"
+            label="Passwords"
+            variant="outlined"
+            value={password}
+            onChange={handleChange}
+            type="password"
+            name="password"
+            style={{ marginBottom: 24, width: 300 }}
+          />
+        </div>
+        <Button variant="contained" type="submit">
+          Login
+        </Button>
       </form>
-    </>
+    </Form>
   );
 };
