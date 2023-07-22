@@ -11,6 +11,8 @@ import authSelectors from 'redux/auth/auth-selectors';
 import { ResrtictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
 import { Loader } from './Loader/Loader';
+import { NotFoundPage } from 'pages/NotFound/NotFound';
+
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -27,11 +29,12 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route path="/" element={<Home />} />
+          <Route path="*" element={<NotFoundPage />} />
           <Route
             path="/registration"
             element={
               <ResrtictedRoute
-                component={<Registration/>}
+                component={<Registration />}
                 redirectTo="/contacts"
               />
             }
@@ -40,16 +43,17 @@ export const App = () => {
           <Route
             path="/login"
             element={
-              <ResrtictedRoute component={<Login/>} redirectTo="/contacts" />
+              <ResrtictedRoute component={<Login />} redirectTo="/contacts" />
             }
           />
           <Route
             path="/contacts"
             element={
-              <PrivateRoute component={<ContactPage/>} redirectTo="/login" />
+              <PrivateRoute component={<ContactPage />} redirectTo="/login" />
             }
           />
         </Route>
+       
       </Routes>
     </div>
   );
