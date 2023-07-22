@@ -12,19 +12,16 @@ import { ResrtictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
 import { Loader } from './Loader/Loader';
 
-
-
 export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(authSelectors.getIsRefreshing);
 
   useEffect(() => {
     dispatch(authOperations.refreshCurrentUser());
- 
   }, [dispatch]);
 
   return isRefreshing ? (
-    <Loader/>
+    <Loader />
   ) : (
     <div style={{ padding: '36px' }}>
       <Routes>
@@ -34,7 +31,7 @@ export const App = () => {
             path="/registration"
             element={
               <ResrtictedRoute
-                component={Registration}
+                component={<Registration/>}
                 redirectTo="/contacts"
               />
             }
@@ -43,18 +40,17 @@ export const App = () => {
           <Route
             path="/login"
             element={
-              <ResrtictedRoute component={Login} redirectTo="/contacts" />
+              <ResrtictedRoute component={<Login/>} redirectTo="/contacts" />
             }
           />
           <Route
             path="/contacts"
             element={
-              <PrivateRoute component={ContactPage} redirectTo="/login" />
+              <PrivateRoute component={<ContactPage/>} redirectTo="/login" />
             }
           />
         </Route>
       </Routes>
     </div>
-
   );
 };
