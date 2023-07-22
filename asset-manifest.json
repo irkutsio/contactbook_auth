@@ -1,14 +1,16 @@
 {
   "files": {
-    "main.css": "/contactbook_auth/static/css/main.8f7e3d82.css",
-    "main.js": "/contactbook_auth/static/js/main.5edcfd52.js",
-    "static/media/homer.png": "/contactbook_auth/static/media/homer.66d4a7cec6ea879f467d.png",
-    "index.html": "/contactbook_auth/index.html",
-    "main.8f7e3d82.css.map": "/contactbook_auth/static/css/main.8f7e3d82.css.map",
-    "main.5edcfd52.js.map": "/contactbook_auth/static/js/main.5edcfd52.js.map"
+    "main.css": "/goit-react-hw-08-phonebook/static/css/main.8f7e3d82.css",
+    "main.js": "/goit-react-hw-08-phonebook/static/js/main.e0586a99.js",
+    "static/media/homer.png": "/goit-react-hw-08-phonebook/static/media/homer.66d4a7cec6ea879f467d.png",
+    "static/media/notFound.png": "/goit-react-hw-08-phonebook/static/media/notFound.eb199989ffda1bd82563.png",
+    "static/media/bg_img.jpg": "/goit-react-hw-08-phonebook/static/media/bg_img.025d548ef0ea7f902ea8.jpg",
+    "index.html": "/goit-react-hw-08-phonebook/index.html",
+    "main.8f7e3d82.css.map": "/goit-react-hw-08-phonebook/static/css/main.8f7e3d82.css.map",
+    "main.e0586a99.js.map": "/goit-react-hw-08-phonebook/static/js/main.e0586a99.js.map"
   },
   "entrypoints": [
     "static/css/main.8f7e3d82.css",
-    "static/js/main.5edcfd52.js"
+    "static/js/main.e0586a99.js"
   ]
 }
